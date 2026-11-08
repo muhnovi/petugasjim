@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Pencil, Power, Search, Trash2, X } from "lucide-react";
 import { createClient } from "@/lib/supabase/browser";
+import { StyledSelect } from "@/components/styled-select";
 
 type Officer = {
   id: string;
@@ -129,9 +130,7 @@ export function OfficerManager() {
         <Search size={16} className="text-[var(--muted)]" />
         <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Cari nama petugas..." className="w-full bg-transparent py-3 text-sm outline-none" />
       </div>
-      <select aria-label="Filter status petugas" value={status} onChange={(event) => setStatus(event.target.value)} className="min-w-40 rounded-xl border border-[var(--line)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--muted)]">
-        <option value="all">Semua status</option><option value="active">Aktif</option><option value="inactive">Nonaktif</option>
-      </select>
+      <StyledSelect ariaLabel="Filter status petugas" value={status} onChange={setStatus} options={[{ value: "all", label: "Semua status" }, { value: "active", label: "Aktif" }, { value: "inactive", label: "Nonaktif" }]} className="min-w-40" />
       <button onClick={openCreate} className="rounded-xl bg-[var(--ink)] px-4 py-3 text-xs font-semibold text-[var(--surface)]">Tambah petugas</button>
     </div>
 

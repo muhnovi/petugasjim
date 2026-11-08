@@ -35,6 +35,14 @@ select {
   cursor: pointer;
   padding-right: 2.75rem !important;
 }
+.app-select {
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  color: var(--ink);
+  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+.app-select:hover { background-color: #f3ecdf; }
+.app-select:focus { background-color: #fbf7ef; }
 select:hover { border-color: #b7ad9c; }
 select:focus { border-color: var(--olive); box-shadow: 0 0 0 3px rgb(119 130 104 / 15%); outline: none; }
 select:disabled { cursor: not-allowed; }

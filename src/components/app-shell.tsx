@@ -60,7 +60,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </aside>
       {open && <button aria-label="Tutup menu" onClick={() => setOpen(false)} className="fixed inset-0 z-20 bg-black/20 lg:hidden" />}
       <div className="lg:pl-64">
-        <header className="flex items-center justify-between border-b border-[var(--line)] px-5 py-4 lg:hidden">
+        <header className="sticky top-0 z-20 flex items-center justify-between border-b border-[var(--line)] bg-[var(--background)]/95 px-5 py-4 backdrop-blur lg:hidden">
           <button onClick={() => setOpen(true)}><Menu size={22} /></button>
           <span className="font-serif text-lg font-bold">Catatan Jimpitan</span><div className="w-6" />
         </header>

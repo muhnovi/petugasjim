@@ -2,13 +2,14 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, LockKeyhole } from "lucide-react";
+import { ArrowRight, Eye, EyeOff, LockKeyhole } from "lucide-react";
 import { createClient } from "@/lib/supabase/browser";
 
 export function LoginForm() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -27,5 +28,5 @@ export function LoginForm() {
     router.refresh();
   };
 
-  return <><form onSubmit={submit} className="mt-8 space-y-4"><label className="block space-y-2"><span className="text-xs font-semibold">Email</span><input required type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="bendahara@email.com" className="w-full rounded-xl border border-[var(--line)] bg-[#fbf7ef] px-3.5 py-3 text-sm outline-none focus:border-[var(--olive)]" /></label><label className="block space-y-2"><span className="text-xs font-semibold">Kata sandi</span><input required type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Masukkan kata sandi" className="w-full rounded-xl border border-[var(--line)] bg-[#fbf7ef] px-3.5 py-3 text-sm outline-none focus:border-[var(--olive)]" /></label>{error && <p role="alert" className="rounded-xl border border-[#d7b6ab] bg-[#f7e9e3] px-3 py-2 text-xs leading-5 text-[#914f3e]">{error}</p>}<button disabled={loading} className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--ink)] py-3.5 text-sm font-semibold text-[var(--surface)] disabled:opacity-50">{loading ? "Memeriksa..." : <>Masuk <ArrowRight size={16} /></>}</button></form><div className="mt-6 flex items-center gap-2 text-xs text-[var(--muted)]"><LockKeyhole size={14} />Akses aman untuk bendahara</div></>;
+  return <><form onSubmit={submit} className="mt-8 space-y-4"><label className="block space-y-2"><span className="text-xs font-semibold">Email</span><input required type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="MasukKan Email" className="w-full rounded-xl border border-[var(--line)] bg-[#fbf7ef] px-3.5 py-3 text-sm outline-none focus:border-[var(--olive)]" /></label><label className="block space-y-2"><span className="text-xs font-semibold">Kata sandi</span><div className="relative"><input required type={showPassword ? "text" : "password"} autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Masukkan kata sandi" className="w-full rounded-xl border border-[var(--line)] bg-[#fbf7ef] px-3.5 py-3 pr-12 text-sm outline-none focus:border-[var(--olive)]" /><button type="button" aria-label={showPassword ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"} onClick={() => setShowPassword((visible) => !visible)} className="absolute inset-y-0 right-0 flex w-11 items-center justify-center text-[var(--muted)] hover:text-[var(--ink)]">{showPassword ? <EyeOff size={18} /> : <Eye size={18} />}</button></div></label>{error && <p role="alert" className="rounded-xl border border-[#d7b6ab] bg-[#f7e9e3] px-3 py-2 text-xs leading-5 text-[#914f3e]">{error}</p>}<button disabled={loading} className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--ink)] py-3.5 text-sm font-semibold text-[var(--surface)] disabled:opacity-50">{loading ? "Memeriksa..." : <>Masuk <ArrowRight size={16} /></>}</button></form><div className="mt-6 flex items-center gap-2 text-xs text-[var(--muted)]"><LockKeyhole size={14} />Akses aman untuk bendahara</div></>;
 }
